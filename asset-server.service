@@ -1,0 +1,11 @@
+[Unit]
+Description=Asset Server
+After=network.target
+
+[Service]
+Type=simple
+Environment='PYTHONPATH=/usr/share/asset-server/asset-server.egg'
+ExecStart=/usr/bin/python -m asset.server.main
+
+[Install]
+WantedBy=multi-user.target

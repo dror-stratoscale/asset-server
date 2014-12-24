@@ -1,0 +1,7 @@
+*.pyc
+*.swp
+build
+dist
+asset-server.egg-info
+.coverage
+attic

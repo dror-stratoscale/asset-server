@@ -1,0 +1,19 @@
+datacenter 1:
+  subnet:
+    network 1:
+      assets:
+      - {subnet: 192.168.1.0}
+      - {subnet: 192.168.2.0}
+      - {subnet: 192.168.3.0}
+      - {subnet: 192.168.4.0}
+      defaultPool: true
+    network 2:
+      assets:
+      - {subnet: 10.0.1.0}
+      - {subnet: 10.0.2.0}
+  vlan:
+    segment a:
+      assets:
+      - {vlan: 1024}
+      - {vlan: 1025}
+      - {vlan: 1026}
