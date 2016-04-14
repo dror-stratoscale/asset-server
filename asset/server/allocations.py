@@ -3,6 +3,7 @@ import simplejson
 import time
 import os
 import logging
+import random
 from asset.server import config
 
 
@@ -28,11 +29,12 @@ class Allocations:
             raise Exception(
                 "Continent %(continent)s assetKind %(assetKind)s pool %(pool)s does not have enough "
                 "available resources" % dict(continent=continent, assetKind=assetKind, pool=pool))
+        allocStart = random.randint(0, len(poolInstance['assets'])-assetCount)
         allocation = dict(
             continent=continent, assetKind=assetKind, pool=pool, id=id, allocationInfo=allocationInfo,
-            assets=poolInstance['assets'][:assetCount],
+            assets=poolInstance['assets'][allocStart:allocStart+assetCount],
             heartbeat=time.time())
-        poolInstance['assets'][:assetCount] = []
+        poolInstance['assets'][allocStart:allocStart+assetCount] = []
         with open(os.path.join(config.ALLOCATIONS_DIR, str(id)), "w") as f:
             simplejson.dump(allocation, f)
         logging.info("Allocation created: %(allocation)s", dict(allocation=allocation))
